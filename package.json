@@ -1,0 +1,35 @@
+{
+  "name": "sheila-ho-capstone-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "migrate": "knex migrate:latest --knexfile ./db/knexfile.js",
+    "migrate:down": "knex migrate:down --knexfile ./db/knexfile.js",
+    "migrate:rollback": "knex migrate:rollback --knexfile ./db/knexfile.js",
+    "seed": "knex seed:run --knexfile ./db/knexfile.js",
+    "dev": "nodemon -r dotenv/config index.js dotenv_config_path=.env",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sheilsh/sheila-ho-capstone-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sheilsh/sheila-ho-capstone-server/issues"
+  },
+  "homepage": "https://github.com/Sheilsh/sheila-ho-capstone-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "knex": "^2.4.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.2.4",
+    "nodemon": "^2.0.22",
+    "uuid": "^9.0.0"
+  }
+}
