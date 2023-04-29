@@ -1,13 +1,13 @@
-const userDAO = require("../models/user");
+const User = require("../models/user");
 
-class userService {
+class UserService {
   getAllRecords() {
-    return userDAO.getAllRecords();
+    return User.getAllRecords();
   }
 
-  //   getRecordById(id) {
-  //     return userDAO.getRecordById(id);
-  //   }
+  getRecordById(id) {
+    return User.getRecordById(id);
+  }
 }
 
-module.exports = new userService();
+module.exports = new UserService();

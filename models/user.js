@@ -1,8 +1,8 @@
-const db = require("../db/db");
+const database = require("../db/db");
 
-class userDAO {
+class User {
   getAllRecords() {
-    return db
+    return database
       .from("user")
       .select(
         "user.id",
@@ -15,21 +15,22 @@ class userDAO {
         "license_plate"
       );
   }
-  //   async getRecordById(id) {
-  //     const data = await db
-  //       .join("license", "license.id", "user.license.id")
-  //       .from("user")
-  //       .select(
-  //         "user.id",
-  //         "full_name",
-  //         "unit_number",
-  //         "address",
-  //         "city",
-  //         "phone_number",
-  //         "email"
-  //       );
-  //     return data;
-  //   }
+  getRecordById(id) {
+    return database
+      .first()
+      .from("user")
+      .where("user.id", id)
+      .select(
+        "user.id",
+        "user.full_name",
+        "user.unit_number",
+        "user.address",
+        "user.city",
+        "user.phone_number",
+        "user.email",
+        "user.license_plate"
+      );
+  }
 }
 
-module.exports = new userDAO();
+module.exports = new User();
