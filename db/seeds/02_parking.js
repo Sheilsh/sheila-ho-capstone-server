@@ -1,7 +1,5 @@
 // parking.js
-
 exports.seed = async function (knex) {
-  // Use knex to insert data into your database here
   await knex("parking").del();
   await knex("parking").insert([
     {
