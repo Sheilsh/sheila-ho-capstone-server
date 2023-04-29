@@ -3,20 +3,21 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema
-    .createTable("user", (table) => {
+  return Promise.all([
+    knex.schema.createTable("user", (table) => {
       table.uuid("id").primary();
-      table.string("user_name").notNullable();
+      table.string("full_name").notNullable();
       table.string("unit_number").notNullable();
       table.string("address").notNullable();
       table.string("city").notNullable();
-      table.string("user_phone").notNullable();
-      table.string("user_email").notNullable();
+      table.string("phone_number").notNullable();
+      table.string("email").notNullable();
       table.timestamps(true, true);
-    })
-    .createTable("license_plate", (table) => {
+    }),
+    knex.schema.createTable("license_plate", (table) => {
       table.uuid("id").primary();
       table.string("plate_number").notNullable();
+      table.string("plate_state").notNullable();
       table
         .uuid("user_id")
         .notNullable()
@@ -25,13 +26,18 @@ exports.up = function (knex) {
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
       table.timestamps(true, true);
-    });
+    }),
+  ]);
 };
 
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
+
 exports.down = function (knex) {
-  return knex.schema.dropTable("users");
+  return Promise.all([
+    knex.schema.dropTable("user"),
+    knex.schema.dropTable("license_plate"),
+  ]);
 };

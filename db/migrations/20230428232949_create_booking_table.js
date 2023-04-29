@@ -3,32 +3,40 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable("booking", function (table) {
-    table.uuid("id").primary();
-    table
-      .uuid("user_id")
-      .references("id")
-      .onDelete("CASCADE")
-      .onUpdate("CASCADE");
-    table
-      .uuid("parking_id")
-      .references("id")
-      .onDelete("CASCADE")
-      .onUpdate("CASCADE");
-    table.datetime("start_datetime").notNullable();
-    table.datetime("end_datetime").notNullable();
-    table.timestamps(true, true);
-  });
+  return Promise.all([
+    knex.schema.createTable("parking", (table) => {
+      table.uuid("id").primary();
+      table.integer("spot_number").notNullable();
+      table.boolean("is_booked").notNullable().defaultTo(false);
+      table.timestamps(true, true);
+    }),
+
+    knex.schema.createTable("booking", (table) => {
+      table.uuid("id").primary();
+      table
+        .uuid("parking_id")
+        .references("id")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
+      table
+        .uuid("user_id")
+        .references("id")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
+      table
+        .datetime("start_datetime", { precision: 6 })
+        .defaultTo(knex.fn.now(6));
+      table
+        .datetime("end_datetime", { precision: 6 })
+        .defaultTo(knex.fn.now(6));
+      table.timestamps(true, true);
+    }),
+  ]);
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTable("booking");
-};
-
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-exports.down = function (knex) {
-  return knex.schema.dropTable("booking");
+  return Promise.all([
+    knex.schema.dropTable("booking"),
+    knex.schema.dropTable("parking"),
+  ]);
 };
