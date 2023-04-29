@@ -1,4 +1,3 @@
-// user.js
 exports.seed = async function (knex) {
   await knex("user").del();
   await knex("user").insert([
@@ -10,6 +9,12 @@ exports.seed = async function (knex) {
       city: "Toronto",
       phone_number: "+1 (646) 123-1234",
       email: "janedoe@gmail.com",
+      license_plate: JSON.stringify([
+        { plate_number: "ABC123", province: "ON" },
+        { plate_number: "DEF456", province: "ON" },
+      ]),
+      created_at: new Date(),
+      updated_at: new Date(),
     },
     {
       id: "098ac9d2-b96e-4761-a94c-50e74012c1f1",
@@ -19,6 +24,12 @@ exports.seed = async function (knex) {
       city: "Toronto",
       phone_number: "+1 (645) 123-1234",
       email: "johndoe@gmail.com",
+      license_plate: JSON.stringify([
+        { plate_number: "ABC456", province: "ON" },
+        { plate_number: "DEF789", province: "ON" },
+      ]),
+      created_at: new Date(),
+      updated_at: new Date(),
     },
     {
       id: "6f141a6b-7424-4a2b-ba10-4d4c738f9a9c",
@@ -28,46 +39,12 @@ exports.seed = async function (knex) {
       city: "Toronto",
       phone_number: "+1 (643) 123-1234",
       email: "joedoe@gmail.com",
-    },
-  ]);
-
-  await knex("license_plate").del();
-  await knex("license_plate").insert([
-    {
-      id: 1,
-      user_id: "f44d6d1c-90f3-45c3-92d2-b0fd52e9a72c",
-      plate_number: "ABC123",
-      plate_state: "ON",
-    },
-    {
-      id: 2,
-      user_id: "f44d6d1c-90f3-45c3-92d2-b0fd52e9a72c",
-      plate_number: "DEF456",
-      plate_state: "ON",
-    },
-    {
-      id: 3,
-      user_id: "098ac9d2-b96e-4761-a94c-50e74012c1f1",
-      plate_number: "ABC456",
-      plate_state: "ON",
-    },
-    {
-      id: 4,
-      user_id: "098ac9d2-b96e-4761-a94c-50e74012c1f1",
-      plate_number: "DEF789",
-      plate_state: "ON",
-    },
-    {
-      id: 5,
-      user_id: "6f141a6b-7424-4a2b-ba10-4d4c738f9a9c",
-      plate_number: "ABC852",
-      plate_state: "ON",
-    },
-    {
-      id: 6,
-      user_id: "6f141a6b-7424-4a2b-ba10-4d4c738f9a9c",
-      plate_number: "DEF963",
-      plate_state: "ON",
+      license_plate: JSON.stringify([
+        { plate_number: "ABC852", province: "ON" },
+        { plate_number: "DEF963", province: "ON" },
+      ]),
+      created_at: new Date(),
+      updated_at: new Date(),
     },
   ]);
 };
