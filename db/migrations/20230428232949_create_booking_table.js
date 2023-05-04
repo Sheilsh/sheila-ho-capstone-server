@@ -15,12 +15,12 @@ exports.up = function (knex) {
       table.uuid("id").primary();
       table
         .uuid("parking_id")
-        .references("id")
+        .references("parking.id")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
       table
         .uuid("user_id")
-        .references("id")
+        .references("user.id")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
       table
