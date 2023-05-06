@@ -11,8 +11,7 @@ class User {
         "address",
         "city",
         "phone_number",
-        "email",
-        "license_plate"
+        "email"
       );
   }
   getRecordById(id) {
@@ -20,6 +19,7 @@ class User {
       .first()
       .from("user")
       .where("user.id", id)
+      .innerJoin("plate", "user.id", "=", "plate.user_id")
       .select(
         "user.id",
         "user.full_name",
@@ -28,7 +28,7 @@ class User {
         "user.city",
         "user.phone_number",
         "user.email",
-        "user.license_plate"
+        "plate.plate_number"
       );
   }
 }
