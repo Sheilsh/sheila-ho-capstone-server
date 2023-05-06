@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 
 app.use("/user", userRouter);
 app.use("/parking", parkingRouter);
-// app.use("/booking", bookingRouter);
+app.use("/booking", bookingRouter);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
