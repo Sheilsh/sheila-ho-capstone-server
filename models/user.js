@@ -11,8 +11,7 @@ class User {
         "address",
         "city",
         "phone_number",
-        "email",
-        "license_plate"
+        "email"
       );
   }
   getRecordById(id) {
@@ -27,8 +26,7 @@ class User {
         "user.address",
         "user.city",
         "user.phone_number",
-        "user.email",
-        "user.license_plate"
+        "user.email"
       );
   }
 }

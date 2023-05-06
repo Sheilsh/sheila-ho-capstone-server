@@ -11,7 +11,6 @@ exports.up = function (knex) {
     table.string("city").notNullable();
     table.string("phone_number").notNullable();
     table.string("email").notNullable();
-    table.jsonb("license_plate").notNullable().defaultTo([]);
     table.timestamps(true, true);
   });
 };
