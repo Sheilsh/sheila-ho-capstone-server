@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8080;
 const userRouter = require("./routes/userRoute");
+const parkingRouter = require("./routes/parkingRoute");
 const bookingRouter = require("./routes/bookingRoute");
 const cors = require("cors");
 
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/user", userRouter);
+app.use("/parking", parkingRouter);
 // app.use("/booking", bookingRouter);
 
 app.listen(PORT, () => {
