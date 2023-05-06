@@ -19,6 +19,7 @@ class User {
       .first()
       .from("user")
       .where("user.id", id)
+      .innerJoin("plate", "user.id", "=", "plate.user_id")
       .select(
         "user.id",
         "user.full_name",
@@ -26,7 +27,8 @@ class User {
         "user.address",
         "user.city",
         "user.phone_number",
-        "user.email"
+        "user.email",
+        "plate.plate_number"
       );
   }
 }
