@@ -10,26 +10,28 @@ class Booking {
         "parking_id",
         "plate_id",
         "start_datetime",
-        "end_datetime"
+        "end_datetime",
+        "spot_number",
+        "is_booked"
       );
   }
-  //   getRecordById(id) {
-  //     return database
-  //       .first()
-  //       .from("user")
-  //       .where("user.id", id)
-  //       .innerJoin("plate", "user.id", "=", "plate.user_id")
-  //       .select(
-  //         "user.id",
-  //         "user.full_name",
-  //         "user.unit_number",
-  //         "user.address",
-  //         "user.city",
-  //         "user.phone_number",
-  //         "user.email",
-  //         "plate.plate_number"
-  //       );
-  //   }
+
+  getRecordById(id) {
+    return database
+      .first()
+      .from("booking")
+      .where("booking.id", id)
+      .join("parking", "parking.id", "=", "booking.parking_id")
+      .select(
+        "booking.id",
+        "booking.parking_id",
+        "booking.plate_id",
+        "booking.start_datetime",
+        "booking.end_datetime",
+        "parking.spot_number",
+        "parking.is_booked"
+      );
+  }
 }
 
 module.exports = new Booking();
