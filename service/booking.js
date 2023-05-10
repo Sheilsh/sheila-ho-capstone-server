@@ -8,6 +8,10 @@ class BookingService {
   getRecordById(id) {
     return Booking.getRecordById(id);
   }
+
+  addNewRecord(booking) {
+    return Booking.addInventoryItem(booking);
+  }
 }
 
 module.exports = new BookingService();

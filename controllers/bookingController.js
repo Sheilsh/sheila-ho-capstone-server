@@ -18,6 +18,15 @@ class BookingController {
       res.status(500).json({ message: error.message });
     }
   }
+
+  async addNewRecord(req, res) {
+    try {
+      const data = await BookingService.getRecordById(req.body);
+      res.status(201).json(data);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = new BookingController();

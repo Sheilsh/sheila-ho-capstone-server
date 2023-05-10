@@ -32,6 +32,10 @@ class Booking {
         "parking.is_booked"
       );
   }
+
+  addNewRecord(booking) {
+    return database.insert(booking).into("booking");
+  }
 }
 
 module.exports = new Booking();

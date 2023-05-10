@@ -28,7 +28,7 @@ class User {
         "user.city",
         "user.phone_number",
         "user.email",
-        "plate.plate_number"
+        "plate.license_plate"
       );
   }
 }

@@ -23,6 +23,7 @@ exports.up = function (knex) {
         .references("plate.id")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
+      table.string("plate_number").notNullable();
       table
         .datetime("start_datetime", { precision: 6 })
         .defaultTo(knex.fn.now(6));
