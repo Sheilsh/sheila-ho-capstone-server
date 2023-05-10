@@ -8,6 +8,10 @@ class UserService {
   getRecordById(id) {
     return User.getRecordById(id);
   }
+
+  getBooking(id) {
+    return User.getBooking(id);
+  }
 }
 
 module.exports = new UserService();

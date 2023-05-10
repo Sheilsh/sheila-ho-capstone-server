@@ -19,6 +19,11 @@ exports.up = function (knex) {
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
       table
+        .uuid("user_id")
+        .references("user.id")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
+      table
         .uuid("plate_id")
         .references("plate.id")
         .onUpdate("CASCADE")

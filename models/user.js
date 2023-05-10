@@ -31,6 +31,19 @@ class User {
         "plate.license_plate"
       );
   }
+
+  getBooking(id) {
+    return database
+      .from("booking")
+      .where("user_id", id)
+      .select(
+        "id",
+        "plate_number",
+        "parking_id",
+        "start_datetime",
+        "end_datetime"
+      );
+  }
 }
 
 module.exports = new User();
