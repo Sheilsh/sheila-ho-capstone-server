@@ -24,12 +24,8 @@ exports.up = function (knex) {
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
       table.string("plate_number").notNullable();
-      table
-        .datetime("start_datetime", { precision: 6 })
-        .defaultTo(knex.fn.now(6));
-      table
-        .datetime("end_datetime", { precision: 6 })
-        .defaultTo(knex.fn.now(6));
+      table.timestamp("start_datetime").defaultTo(knex.fn.now());
+      table.timestamp("end_datetime").defaultTo(knex.fn.now());
       table.timestamps(true, true);
     }),
   ]);
