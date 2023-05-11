@@ -36,12 +36,14 @@ class User {
     return database
       .from("booking")
       .where("user_id", id)
+      .innerJoin("parking", "booking.parking_id", "=", "parking.id")
       .select(
-        "id",
+        "booking.id",
         "plate_number",
-        "parking_id",
+        "booking.parking_id",
         "start_datetime",
-        "end_datetime"
+        "end_datetime",
+        "parking.spot_number"
       );
   }
 }
