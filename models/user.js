@@ -48,6 +48,13 @@ class User {
         "parking.spot_number"
       );
   }
+
+  updateById(id, data) {
+    return database
+      .from("user")
+      .where("id", id)
+      .update({ ...data, updated_at: new Date() });
+  }
 }
 
 module.exports = new User();
