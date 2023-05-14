@@ -6,8 +6,9 @@ exports.up = function (knex) {
   return Promise.all([
     knex.schema.createTable("parking", (table) => {
       table.uuid("id").primary();
-      table.integer("spot_number").notNullable();
+      table.integer("spot_number").unique().notNullable();
       table.boolean("is_booked").notNullable().defaultTo(false);
+      // table.timestamp("current_booking_end_datetime");
       table.timestamps(true, true);
     }),
 
@@ -29,8 +30,8 @@ exports.up = function (knex) {
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
       table.string("plate_number").notNullable();
-      table.timestamp("start_datetime").defaultTo(knex.fn.now());
-      table.timestamp("end_datetime").defaultTo(knex.fn.now());
+      table.timestamp("start_datetime").defaultTo(knex.fn.now()).notNullable();
+      table.timestamp("end_datetime").notNullable();
       table.timestamps(true, true);
     }),
   ]);
@@ -38,6 +39,13 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return Promise.all([
+    knex.schema.table("booking", (table) => {
+      table.dropForeign("parking_id");
+      table.dropForeign("user_id");
+      table.dropForeign("plate_id");
+    }),
+    // knex,
+    // schema.dropColumn("current_booking_end_datetime"),
     knex.schema.dropTable("booking"),
     knex.schema.dropTable("parking"),
   ]);

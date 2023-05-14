@@ -9,8 +9,16 @@ class BookingService {
     return Booking.getRecordById(id);
   }
 
+  // async getAvailability() {
+  //   return Booking.getAvailability();
+  // }
+
   addNewRecord(booking) {
-    return Booking.addInventoryItem(booking);
+    return Booking.addNewRecord(booking);
+  }
+
+  deleteRecordById(id) {
+    return Booking.deleteRecordById(id);
   }
 }
 

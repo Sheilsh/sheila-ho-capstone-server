@@ -19,10 +19,29 @@ class BookingController {
     }
   }
 
+  // async getAvailability(req, res) {
+  //   try {
+  //     const data = await BookingService.getAvailability(req.body);
+  //     res.status(200).json(data);
+  //   } catch (error) {
+  //     res.status(500).json({ message: error.message });
+  //   }
+  // }
+
   async addNewRecord(req, res) {
     try {
-      const data = await BookingService.getRecordById(req.body);
-      res.status(201).json(data);
+      const newBooking = await BookingService.addNewRecord(req.body);
+      res.status(201).json(newBooking);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  async deleteRecordById(req, res) {
+    try {
+      const data = await BookingService.deleteRecordById(req.params.id);
+      res.status(200).json(data);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

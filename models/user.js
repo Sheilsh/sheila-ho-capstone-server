@@ -14,6 +14,7 @@ class User {
         "email"
       );
   }
+
   getRecordById(id) {
     return database
       .first()
@@ -28,6 +29,7 @@ class User {
         "user.city",
         "user.phone_number",
         "user.email",
+        "plate.id as plate_id",
         "plate.license_plate"
       );
   }
