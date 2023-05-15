@@ -1,3 +1,5 @@
+const shortid = require("shortid");
+
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
@@ -8,12 +10,11 @@ exports.up = function (knex) {
       table.uuid("id").primary();
       table.integer("spot_number").unique().notNullable();
       table.boolean("is_booked").notNullable().defaultTo(false);
-      // table.timestamp("current_booking_end_datetime");
       table.timestamps(true, true);
     }),
 
     knex.schema.createTable("booking", (table) => {
-      table.uuid("id").primary();
+      table.string("id", 8).defaultTo(shortid.generate()).primary();
       table
         .uuid("parking_id")
         .references("parking.id")
@@ -44,8 +45,6 @@ exports.down = function (knex) {
       table.dropForeign("user_id");
       table.dropForeign("plate_id");
     }),
-    // knex,
-    // schema.dropColumn("current_booking_end_datetime"),
     knex.schema.dropTable("booking"),
     knex.schema.dropTable("parking"),
   ]);

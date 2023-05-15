@@ -1,5 +1,5 @@
 const database = require("../db/db");
-const { v4: uuidv4 } = require("uuid");
+const shortid = require("shortid");
 
 class Booking {
   getAllRecords() {
@@ -42,7 +42,7 @@ class Booking {
       plate_id = uuidv4();
     }
 
-    const id = uuidv4();
+    const id = shortid.generate();
     const newBooking = { ...booking, id, plate_id };
 
     return database.insert(newBooking).into("booking");
