@@ -9,10 +9,6 @@ class BookingService {
     return Booking.getRecordById(id);
   }
 
-  // async getAvailability() {
-  //   return Booking.getAvailability();
-  // }
-
   addNewRecord(booking) {
     return Booking.addNewRecord(booking);
   }
