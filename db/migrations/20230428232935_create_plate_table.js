@@ -10,7 +10,7 @@ exports.up = function (knex) {
       .references("user.id")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
-    table.jsonb("license_plate").notNullable().defaultTo([]);
+    table.json("license_plate").notNullable().defaultTo([]);
     table.timestamps(true, true);
   });
 };
