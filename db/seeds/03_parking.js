@@ -1,4 +1,3 @@
-// parking.js
 exports.seed = async function (knex) {
   await knex("parking").del();
   await knex("parking").insert([

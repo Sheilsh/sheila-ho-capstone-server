@@ -1,4 +1,3 @@
-// booking.js
 exports.seed = async function (knex) {
   await knex("booking").del();
   await knex("booking").insert([

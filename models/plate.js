@@ -1,4 +1,5 @@
 const database = require("../db/db");
+const { v4: uuidv4 } = require("uuid");
 
 class Plate {
   async addPlateByUserId(userId, plate) {
@@ -12,7 +13,8 @@ class Plate {
         ? existingPlates.license_plate
         : [];
 
-    licensePlate.push({ plate_number: plate.plate_number });
+    const newPlate = { id: uuidv4(), plate_number: plate.plate_number };
+    licensePlate.push(newPlate);
 
     return database("plate")
       .where("user_id", userId)

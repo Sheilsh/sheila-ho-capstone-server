@@ -1,5 +1,7 @@
 const database = require("../db/db");
+const Plate = require("../models/plate.js");
 const shortid = require("shortid");
+const { v4: uuidv4 } = require("uuid");
 
 class Booking {
   getAllRecords() {
@@ -45,7 +47,20 @@ class Booking {
     const id = shortid.generate();
     const newBooking = { ...booking, id, plate_id };
 
-    return database.insert(newBooking).into("booking");
+    try {
+      if (!booking.plate_id) {
+        const newPlateId = uuidv4();
+        const newPlate = { id: newPlateId, plate_number: booking.plate_number };
+        const plate = new Plate();
+        await plate.addPlateByUserId(booking.user_id, newPlate);
+        newBooking.plate_id = newPlateId;
+      }
+
+      await database.insert(newBooking).into("booking");
+      return newBooking;
+    } catch (error) {
+      throw new Error("Failed to add a new booking record.");
+    }
   }
 
   deleteRecordById(id) {
