@@ -14,6 +14,7 @@ class User {
         "email"
       );
   }
+
   getRecordById(id) {
     return database
       .first()
@@ -28,8 +29,31 @@ class User {
         "user.city",
         "user.phone_number",
         "user.email",
-        "plate.plate_number"
+        "plate.id as plate_id",
+        "plate.license_plate"
       );
+  }
+
+  getBooking(id) {
+    return database
+      .from("booking")
+      .where("user_id", id)
+      .innerJoin("parking", "booking.parking_id", "=", "parking.id")
+      .select(
+        "booking.id",
+        "plate_number",
+        "booking.parking_id",
+        "start_datetime",
+        "end_datetime",
+        "parking.spot_number"
+      );
+  }
+
+  updateById(id, data) {
+    return database
+      .from("user")
+      .where("id", id)
+      .update({ ...data, updated_at: new Date() });
   }
 }
 

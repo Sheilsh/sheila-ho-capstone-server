@@ -6,7 +6,7 @@ exports.up = function (knex) {
   return Promise.all([
     knex.schema.createTable("parking", (table) => {
       table.uuid("id").primary();
-      table.integer("spot_number").notNullable();
+      table.integer("spot_number").unique().notNullable();
       table.boolean("is_booked").notNullable().defaultTo(false);
       table.timestamps(true, true);
     }),
@@ -15,20 +15,25 @@ exports.up = function (knex) {
       table.uuid("id").primary();
       table
         .uuid("parking_id")
-        .references("parking.id")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
+        .references("id")
+        .inTable("parking")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
+      table
+        .uuid("user_id")
+        .references("id")
+        .inTable("user")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
       table
         .uuid("plate_id")
-        .references("plate.id")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
-      table
-        .datetime("start_datetime", { precision: 6 })
-        .defaultTo(knex.fn.now(6));
-      table
-        .datetime("end_datetime", { precision: 6 })
-        .defaultTo(knex.fn.now(6));
+        .references("id")
+        .inTable("plate")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
+      table.string("plate_number").notNullable();
+      table.timestamp("start_datetime").defaultTo(knex.fn.now()).notNullable();
+      table.timestamp("end_datetime").notNullable();
       table.timestamps(true, true);
     }),
   ]);
@@ -36,6 +41,11 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return Promise.all([
+    knex.schema.table("booking", (table) => {
+      table.dropForeign("parking_id");
+      table.dropForeign("user_id");
+      table.dropForeign("plate_id");
+    }),
     knex.schema.dropTable("booking"),
     knex.schema.dropTable("parking"),
   ]);

@@ -12,21 +12,21 @@ exports.seed = async function (knex) {
     },
     {
       id: "098ac9d2-b96e-4761-a94c-50e74012c1f1",
-      full_name: "John Bernard",
+      full_name: "Elizabeth Doe",
       unit_number: "202",
       address: "123 Queen St",
       city: "Toronto",
       phone_number: "+1 (645) 123-1234",
-      email: "johndoe@gmail.com",
+      email: "ElizabethDoe@gmail.com",
     },
     {
       id: "6f141a6b-7424-4a2b-ba10-4d4c738f9a9c",
-      full_name: "Elizabeth Smith",
+      full_name: "Jane Smith",
       unit_number: "203",
       address: "123 Queen St",
       city: "Toronto",
       phone_number: "+1 (643) 123-1234",
-      email: "joedoe@gmail.com",
+      email: "janesmith@gmail.com",
     },
   ]);
 };
