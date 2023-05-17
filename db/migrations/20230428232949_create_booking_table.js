@@ -1,5 +1,3 @@
-const shortid = require("shortid");
-
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
@@ -14,22 +12,25 @@ exports.up = function (knex) {
     }),
 
     knex.schema.createTable("booking", (table) => {
-      table.string("id", 8).defaultTo(shortid.generate()).primary();
+      table.uuid("id").primary();
       table
         .uuid("parking_id")
-        .references("parking.id")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
+        .references("id")
+        .inTable("parking")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
       table
         .uuid("user_id")
-        .references("user.id")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
+        .references("id")
+        .inTable("user")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
       table
         .uuid("plate_id")
-        .references("plate.id")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
+        .references("id")
+        .inTable("plate")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
       table.string("plate_number").notNullable();
       table.timestamp("start_datetime").defaultTo(knex.fn.now()).notNullable();
       table.timestamp("end_datetime").notNullable();

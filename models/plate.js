@@ -13,8 +13,7 @@ class Plate {
         ? existingPlates.license_plate
         : [];
 
-    const newPlate = { id: uuidv4(), plate_number: plate.plate_number };
-    licensePlate.push(newPlate);
+    licensePlate.push({ plate_number: plate.plate_number });
 
     return database("plate")
       .where("user_id", userId)

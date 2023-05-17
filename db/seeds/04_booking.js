@@ -2,7 +2,7 @@ exports.seed = async function (knex) {
   await knex("booking").del();
   await knex("booking").insert([
     {
-      id: "xGz8p3dE",
+      id: "9a6d1b6c-fafc-4f4a-8c6d-b9136cbf4a52",
       user_id: "6f141a6b-7424-4a2b-ba10-4d4c738f9a9c",
       plate_id: "a0b21d7c-384a-4e7c-9ec9-14c1b47a30d3",
       plate_number: "DEF963",
@@ -11,7 +11,7 @@ exports.seed = async function (knex) {
       end_datetime: "2023-05-09 18:00:00",
     },
     {
-      id: "wSf4u9cH",
+      id: "50cc96e9-cd8a-46b9-955e-5a57d5c8e65f",
       user_id: "f44d6d1c-90f3-45c3-92d2-b0fd52e9a72c",
       plate_id: "bf30d7b5-678b-4f98-bd1e-9c9a1fe16252",
       plate_number: "ABC852",
@@ -20,7 +20,7 @@ exports.seed = async function (knex) {
       end_datetime: "2023-05-07 18:00:00",
     },
     {
-      id: "vKp7e2qR",
+      id: "015bc2fb-12ed-4b95-8c05-31a94038b1a6",
       user_id: "098ac9d2-b96e-4761-a94c-50e74012c1f1",
       plate_id: "e045bb6d-c2d1-4d8f-9b99-12c84d1f3097",
       plate_number: "BBC456",
@@ -29,7 +29,7 @@ exports.seed = async function (knex) {
       end_datetime: "2023-05-10 18:00:00",
     },
     {
-      id: "tNf5j6zT",
+      id: "79c9a58d-290d-4eb9-a4ac-ae0d572c6943",
       user_id: "6f141a6b-7424-4a2b-ba10-4d4c738f9a9c",
       plate_id: "a0b21d7c-384a-4e7c-9ec9-14c1b47a30d3",
       plate_number: "DEF963",
