@@ -34,6 +34,7 @@ exports.up = function (knex) {
       table.string("plate_number").notNullable();
       table.timestamp("start_datetime").defaultTo(knex.fn.now()).notNullable();
       table.timestamp("end_datetime").notNullable();
+      table.string("confirmation_number", 8).notNullable();
       table.timestamps(true, true);
     }),
   ]);
@@ -42,6 +43,7 @@ exports.up = function (knex) {
 exports.down = function (knex) {
   return Promise.all([
     knex.schema.table("booking", (table) => {
+      table.dropColumn("confirmation_number");
       table.dropForeign("parking_id");
       table.dropForeign("user_id");
       table.dropForeign("plate_id");

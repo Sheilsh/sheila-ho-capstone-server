@@ -45,7 +45,8 @@ class User {
         "booking.parking_id",
         "start_datetime",
         "end_datetime",
-        "parking.spot_number"
+        "parking.spot_number",
+        "confirmation_number"
       );
   }
 

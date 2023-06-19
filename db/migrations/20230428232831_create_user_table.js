@@ -11,6 +11,7 @@ exports.up = function (knex) {
     table.string("city").notNullable();
     table.string("phone_number").notNullable();
     table.string("email").notNullable();
+    table.string("password").notNullable();
     table.timestamps(true, true);
   });
 };
