@@ -51,20 +51,6 @@ class Authentication {
     });
   }
 
-  //   async loginUser(email, password) {
-  //     const user = await database.from("user").where("email", email).first();
-
-  //     if (!user) {
-  //       return null; // User not found
-  //     }
-
-  //     const isPasswordValid = await bcrypt.compare(password, user.password);
-  //     if (!isPasswordValid) {
-  //       return null; // Invalid password
-  //     }
-
-  //     return user;
-  //   }
   async loginUser(email, password) {
     const user = await database.from("user").where("email", email).first();
 
@@ -82,19 +68,3 @@ class Authentication {
 }
 
 module.exports = new Authentication();
-
-//   getUserByEmail(email) {
-//     return database
-//       .from("user")
-//       .where("email", email)
-//       .select("id", "email", "password")
-//       .first();
-//   }
-
-//   getUserProfile(userId) {
-//     return database
-//       .from("user")
-//       .where("id", userId)
-//       .select("id", "email")
-//       .first();
-//   }

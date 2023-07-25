@@ -5,5 +5,3 @@ authenticationRouter.post("/signup", AuthenticationController.signup);
 authenticationRouter.post("/login", AuthenticationController.login);
 
 module.exports = authenticationRouter;
-
-// authenticationRouter.get("/profile", AuthenticationController.profile);

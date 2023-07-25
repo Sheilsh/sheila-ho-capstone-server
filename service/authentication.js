@@ -27,11 +27,3 @@ class AuthenticationService {
 }
 
 module.exports = new AuthenticationService();
-
-//   getUserByEmail(email) {
-//     return Authentication.getUserByEmail(email);
-//   }
-
-//   getUserProfile(userId) {
-//     return Authentication.getUserProfile(userId);
-//   }
