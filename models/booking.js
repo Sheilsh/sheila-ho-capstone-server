@@ -49,18 +49,6 @@ class Booking {
       );
   }
 
-  // async addNewRecord(booking) {
-  //   let { plate_id } = booking;
-
-  //   if (!plate_id) {
-  //     plate_id = uuidv4();
-  //   }
-
-  //   const id = uuidv4();
-  //   const newBooking = { ...booking, id, plate_id };
-
-  //   return database.insert(newBooking).into("booking");
-  // }
   async addNewRecord(booking) {
     let { plate_id } = booking;
 
@@ -69,12 +57,11 @@ class Booking {
     }
 
     const id = uuidv4();
-    const confirmation_number = this.generateShortConfirmationNumber(); // Access the instance method using `this`
+    const confirmation_number = this.generateShortConfirmationNumber();
     const newBooking = { ...booking, id, plate_id, confirmation_number };
 
     await database.insert(newBooking).into("booking");
 
-    // Return the inserted booking record
     return this.getRecordById(id);
   }
 

@@ -38,7 +38,7 @@ class AuthenticationController {
       if (user) {
         const { id } = user;
         const token = jwt.sign({ userId: id }, secretKey, { expiresIn: "1h" });
-        console.log("JWT Token:", token); // Add this console log statement
+        console.log("JWT Token:", token);
         res.json({ userId: id, token });
       } else {
         res.status(401).json({ message: "Invalid email or password" });
